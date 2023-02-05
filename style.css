@@ -1,0 +1,22 @@
+body {
+	display: flex;
+	justify-content: center;
+}
+
+.grid-container {
+	background-color: rgba(0, 0, 0, 0.267);
+	width: 930px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.grid-obj {
+	background-color: white;
+	margin: 1px;
+}
+
+.active {
+	background-color: rgb(129, 129, 129);
+}
