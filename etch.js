@@ -12,12 +12,23 @@ function grid(prop) {
 			par.removeChild(child);
 		});
 	}
-	let width = (928 / prop) - 2;
+	let wd = window.innerWidth;
+	if (wd > window.innerHeight) {
+		wd = window.innerHeight;
+	}
+	wd = wd - 120;
+	console.log(wd);
+	par.style.width = wd + "px";
+	let width = ((wd / prop) - 2);
 	let height = width;
 	let act = 0;
-	document.addEventListener('mousedown', () => {
+	document.addEventListener('mousedown', (e) => {
+		if(e.target.className === "grid-container") {
+			e.preventDefault();
+		}
 		act = 1;
 	});
+
 	document.addEventListener('mouseup', () => {
 		act = 0;
 	});
@@ -27,6 +38,11 @@ function grid(prop) {
 		gridObj.style.width = width + "px";
 		gridObj.style.height = height + "px";
 		par.appendChild(gridObj);
+		gridObj.addEventListener('mousedown', (e)=> {
+			act=1;
+			e.preventDefault();
+			gridObj.classList.add('active');
+		})
 		gridObj.addEventListener('mouseover', ()=> {
 			if (act ===1) {
 				gridObj.classList.add('active');
@@ -35,11 +51,17 @@ function grid(prop) {
 	}
 }
 
+function formHandle(e) {
+	e.preventDefault();
+	let inputField = document.getElementById("prop");
+	const inputVal = inputField.value;
+	grid(inputVal);
+}
+
 grid(16);
 let frm = document.querySelector("form");
-frm.addEventListener('submit', e => {
-	e.preventDefault();
-	const inputEl = e.target.elements.prop;
-	const inputVal = inputEl.value;
-	grid(inputVal);
+frm.addEventListener('submit', formHandle);
+frm.addEventListener('change', (e) => {
+	console.log("changed");
+	formHandle(e);
 });

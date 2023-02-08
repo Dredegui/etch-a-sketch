@@ -1,12 +1,14 @@
 body {
 	display: flex;
 	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 }
 
 .grid-container {
 	background-color: rgba(0, 0, 0, 0.267);
-	width: 930px;
 	display: flex;
+	margin-top: 40px;
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
@@ -19,4 +21,13 @@ body {
 
 .active {
 	background-color: rgb(129, 129, 129);
+}
+
+.frm {
+	margin-top: 20px;
+}
+
+.frm input {
+	text-align: center;
+	width: 30px;
 }
